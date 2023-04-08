@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.post('/add_sach', auth, authLibrarian, SachController.addSach_complete);
 router.delete('/delete_sach/:id', auth, authLibrarian, SachController.deleteSach);
-router.put('/update_sach/:id', auth, authLibrarian, SachController.updateSach_complete);
+//router.put('/update_sach/:id', auth, authLibrarian, SachController.updateSach_complete);
+router.put('/update_sach', auth, authLibrarian, SachController.updateSach_complete);
 router.get('/get_sach/:id', auth, authLibrarian, SachController.layThongTinSach);
 
 // Các API cho người đọc
