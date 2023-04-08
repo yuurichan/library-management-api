@@ -349,8 +349,8 @@ class SachController {
     /// ----- Hàm update sách đầy đủ -----
     async updateSach_complete(req: Request, res: Response) {
         try {
-            const { id } = req.params;
-            const { tenSach, namSangTac, tacGiaInputs, theLoaiInputs } = req.body
+            //const { id } = req.params;
+            const { id, tenSach, namSangTac, tacGiaInputs, theLoaiInputs } = req.body
             if (tenSach.trim() === '' || tenSach === '' || (namSangTac !== '' && !isValidDate(namSangTac)))
                 return res.status(400).json({ msg: "Invalid data." });
             if (!isValidNameInputs(tacGiaInputs) || !isValidNameInputs(theLoaiInputs))

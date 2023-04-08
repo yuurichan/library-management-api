@@ -68,8 +68,8 @@ class TacGiaController {
 
     async updateTacGia(req: Request, res: Response) {
         try {
-            const { id } = req.params;
-            const { tenTacGia, ngaySinh, queQuan } = req.body;
+            //const { id } = req.params;
+            const { id, tenTacGia, ngaySinh, queQuan } = req.body;
 
             if(isNaN(parseInt(id)) === true)
                 return res.status(400).json({ msg: "Invalid ID format." });

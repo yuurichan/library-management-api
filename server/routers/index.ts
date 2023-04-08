@@ -8,6 +8,8 @@ import ttSRouter from './thongTinSachRouters'
 import ttTLRouter from './thongTinTheLoaiRouters'
 import phieuMuonRouter from './phieuMuonRouters'
 import sachRouter from './sachRouters'
+import userRouter from './userRouters'
+import listRouter from './listRouters'
 import wakeUpRouter from './wakeUpCallRouters'
 
 const routers = {
@@ -20,6 +22,8 @@ const routers = {
     ttTLRouter,
     phieuMuonRouter,
     sachRouter,
+    userRouter,
+    listRouter,
     wakeUpRouter
 };
 export default routers;

@@ -33,7 +33,7 @@ class AuthController {
             {replacements: {idNguoiDung: idNguoiDung, matKhau: matKhau, hoTen: hoTen, ngaySinh: ngaySinh ? ngaySinh : null, soDienThoai: soDienThoai ? soDienThoai : null}})
             // chèn mật khẩu thường vì khi trigger nếu mk thỏa điều kiện thì mới hash và đưa vào Database
 
-            return res.status(201).json({
+            return res.status(200).json({
                 msg: "Đăng kí thành công!",
             });
             // .catch(error => {
@@ -51,7 +51,7 @@ class AuthController {
     async login(req: Request, res: Response) {
         try {
             const { idNguoiDung, matKhau }: UserLogin = req.body;
-            if (idNguoiDung === '' || matKhau === '')
+            if (idNguoiDung.trim() === '' || matKhau.trim() === '')
                 return res.status(400).json({ msg: "error" });
             // let user;
             // await NguoiDung.findByPk(decode.id).then(data => {
@@ -151,56 +151,7 @@ class AuthController {
         }
     }
 
-    // Lay thong tin tai khoan
-    async layThongTinNguoiDung(req: Request, res: Response) {
-        try {
-            const { id } = req.params;
-            if (id === '' || id.trim() === '')
-                return res.status(400).json({msg: "error"});
-            
-            //const userAcc: any = await NguoiDung.findOne({where: {idNguoiDung: id, trangThai: true}, raw: true, nest: true, attributes: ['hoTen', 'ngaySinh', 'soDienThoai', 'vaiTro']})
-            const userAcc: any = await sequelizeConnection.query('SELECT hoTen, ngaySinh, soDienThoai FROM NGUOIDUNG WHERE lower(idNguoiDung) = lower(:id) AND trangThai = true ', {
-                replacements: {id: id},
-                raw: true,
-                nest: true
-            })
-            if (!userAcc)
-                return res.status(400).json({msg: "Tài khoản không tồn tại."})
-
-            return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: userAcc
-            })
-
-        } catch (error: any) {
-            return res.status(500).json({ msg: error.message });
-        }
-    }
-
-    /// CÁC HÀM CỦA QTRI VIÊN
-    async addUser(req: Request, res: Response) {
-        try {
-            
-        } catch (error: any) {
-            return res.status(500).json({ msg: error.message });
-        }
-    }
-
-    async updateUser(req: Request, res: Response) {
-        try {
-            
-        } catch (error: any) {
-            return res.status(500).json({ msg: error.message });
-        }
-    }
-
-    async disableUser(req: Request, res: Response) {
-        try {
-            
-        } catch (error: any) {
-            return res.status(500).json({ msg: error.message });
-        }
-    }
+    
 }
 
 export default new AuthController;

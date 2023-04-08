@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.get('/get_nxb/:id', auth, authLibrarian, NhaXuatBanController.layThongTinNhaXuatBan);
 router.post('/add_nxb', auth, authLibrarian, NhaXuatBanController.addNhaXuatBan);
-router.put('/update_nxb/:id', auth, authLibrarian, NhaXuatBanController.updateNhaXuatBan);
+//router.put('/update_nxb/:id', auth, authLibrarian, NhaXuatBanController.updateNhaXuatBan);
+router.put('/update_nxb/', auth, authLibrarian, NhaXuatBanController.updateNhaXuatBan);
 router.delete('/delete_nxb/:id', auth, authLibrarian, NhaXuatBanController.xoaNhaXuatBan);
 
 export default router

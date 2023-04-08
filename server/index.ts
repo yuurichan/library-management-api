@@ -54,11 +54,13 @@ app.use("/api", routers.authRouter);
 app.use("/api", routers.tacGiaRouter);
 app.use("/api", routers.nxbRouter);
 app.use("/api", routers.theLoaiRouter);
-//app.use("/api", routers.xuatBanSachRouter);
+app.use("/api", routers.xuatBanSachRouter);
 app.use("/api", routers.ttSRouter);
 app.use("/api", routers.ttTLRouter);
-//app.use("/api", routers.phieuMuonRouter);
+app.use("/api", routers.phieuMuonRouter);
 app.use("/api", routers.sachRouter);
+app.use("/api", routers.userRouter);
+app.use("/api", routers.listRouter);
 app.use("/api", routers.wakeUpRouter);
 
 // Few minor changes for some requests

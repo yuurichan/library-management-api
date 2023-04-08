@@ -34,8 +34,8 @@ class TheLoaiController {
 
     async updateTheLoai(req: Request, res: Response) {
         try {
-            const { id } = req.params;
-            const { tenTheLoai } = req.body;
+            //const { id } = req.params;
+            const { id, tenTheLoai } = req.body;
 
             if(isNaN(parseInt(id)) === true)
                 return res.status(400).json({ msg: "Invalid ID format." });

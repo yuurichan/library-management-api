@@ -28,8 +28,8 @@ class NhaXuatBanController {
 
     async updateNhaXuatBan(req: Request, res: Response) {
         try {
-            const { id } = req.params;
-            const { tenNhaXuatBan, namThanhLap } = req.body;
+            //const { id } = req.params;
+            const { id, tenNhaXuatBan, namThanhLap } = req.body;
             if(isNaN(parseInt(id)))
                 return res.status(400).json({ msg: "Invalid ID format." });
 
