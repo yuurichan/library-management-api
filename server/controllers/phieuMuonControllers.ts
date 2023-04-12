@@ -95,7 +95,8 @@ class PhieuMuonController {
             if(isNaN(parseInt(id)))
                 return res.status(400).json({ msg: "Invalid ID format." })
             
-            const foundPM: any = await sequelizeConnection.query('SELECT * FROM phieumuon WHERE idPhieuMuon = :id', {
+            //const foundPM: any = await sequelizeConnection.query('SELECT * FROM phieumuon WHERE idPhieuMuon = :id', {
+            const foundPM: any = await sequelizeConnection.query('CALL THONGTIN_PHIEUMUON(:id)', {
                 replacements: {id: parseInt(id)},
                 type: QueryTypes.SELECT,
                 raw: true,
