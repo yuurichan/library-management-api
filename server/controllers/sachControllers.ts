@@ -17,15 +17,19 @@ class SachController {
             {
                 replacements: {tenSach: tenSach},
                 type: QueryTypes.SELECT,    // Kiểu query là SELECT, để định dạng obj trả về của sqlCon.query
-                raw: true,      // Chỉ trả về data, không trả về metadata kèm theo
+                raw: true,      // Dữ liệu trả về ko cần phải đc format theo model cụ thể nào
                 nest: true,     // Cho các thuộc tính của obj hiển thị đúng định dạng thay vì phải sử dụng dấu . (foo.bar = ...)
+                plain: true     // Chỉ trả về data, không trả về metadata kèm theo
             })
 
-            // foundSach trả về 1 mảng các obj
+            // foundSach trả về 1 mảng các obj gồm [data, metadata]
+            // Ta chỉ cần lấy obj đầu tiên là data, và plain: true giúp ta làm điều đó
+            // Mỗi record trong table mà data trả về sẽ có key là 1 số như: "0", "1",...
+            // Ta lấy chúng bằng cách sử dụng data['1'],...
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
                 data: foundSach,
-                length: foundSach.length
+                length: Object.keys(foundSach).length
             })
 
         } catch (error: any) {
@@ -43,16 +47,21 @@ class SachController {
             {
                 replacements: {namXuatBan: parseInt(namXuatBan)},
                 type: QueryTypes.SELECT,    // Kiểu query là SELECT, để định dạng obj trả về của sqlCon.query
-                raw: true,      // Chỉ trả về data, không trả về metadata kèm theo
+                raw: true,      // Dữ liệu trả về ko cần phải đc format theo model cụ thể nào
                 nest: true,     // Cho các thuộc tính của obj hiển thị đúng định dạng thay vì phải sử dụng dấu . (foo.bar = ...)
+                plain: true     // Chỉ trả về data, không trả về metadata kèm theo
             })
 
-            // foundSach trả về 1 mảng các obj
+            // foundSach trả về 1 mảng các obj gồm [data, metadata]
+            // Ta chỉ cần lấy obj đầu tiên là data, và plain: true giúp ta làm điều đó
+            // Mỗi record trong table mà data trả về sẽ có key là 1 số như: "0", "1",...
+            // Ta lấy chúng bằng cách sử dụng data['1'],...
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
                 data: foundSach,
-                length: foundSach.length
+                length: Object.keys(foundSach).length
             })
+
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }
@@ -66,15 +75,19 @@ class SachController {
             {
                 replacements: {tenTacGia: tenTacGia},
                 type: QueryTypes.SELECT,    // Kiểu query là SELECT, để định dạng obj trả về của sqlCon.query
-                raw: true,      // Chỉ trả về data, không trả về metadata kèm theo
+                raw: true,      // Dữ liệu trả về ko cần phải đc format theo model cụ thể nào
                 nest: true,     // Cho các thuộc tính của obj hiển thị đúng định dạng thay vì phải sử dụng dấu . (foo.bar = ...)
+                plain: true     // Chỉ trả về data, không trả về metadata kèm theo
             })
 
-            // foundSach trả về 1 mảng các obj
+            // foundSach trả về 1 mảng các obj gồm [data, metadata]
+            // Ta chỉ cần lấy obj đầu tiên là data, và plain: true giúp ta làm điều đó
+            // Mỗi record trong table mà data trả về sẽ có key là 1 số như: "0", "1",...
+            // Ta lấy chúng bằng cách sử dụng data['1'],...
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
                 data: foundSach,
-                length: foundSach.length
+                length: Object.keys(foundSach).length
             })
 
         } catch (error: any) {
@@ -90,15 +103,19 @@ class SachController {
             {
                 replacements: {tenTheLoai: tenTheLoai},
                 type: QueryTypes.SELECT,    // Kiểu query là SELECT, để định dạng obj trả về của sqlCon.query
-                raw: true,      // Chỉ trả về data, không trả về metadata kèm theo
+                raw: true,      // Dữ liệu trả về ko cần phải đc format theo model cụ thể nào
                 nest: true,     // Cho các thuộc tính của obj hiển thị đúng định dạng thay vì phải sử dụng dấu . (foo.bar = ...)
+                plain: true     // Chỉ trả về data, không trả về metadata kèm theo
             })
 
-            // foundSach trả về 1 mảng các obj
+            // foundSach trả về 1 mảng các obj gồm [data, metadata]
+            // Ta chỉ cần lấy obj đầu tiên là data, và plain: true giúp ta làm điều đó
+            // Mỗi record trong table mà data trả về sẽ có key là 1 số như: "0", "1",...
+            // Ta lấy chúng bằng cách sử dụng data['1'],...
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
                 data: foundSach,
-                length: foundSach.length
+                length: Object.keys(foundSach).length
             })
 
         } catch (error: any) {
@@ -114,15 +131,19 @@ class SachController {
             {
                 replacements: {tenNXB: tenNXB},
                 type: QueryTypes.SELECT,    // Kiểu query là SELECT, để định dạng obj trả về của sqlCon.query
-                raw: true,      // Chỉ trả về data, không trả về metadata kèm theo
+                raw: true,      // Dữ liệu trả về ko cần phải đc format theo model cụ thể nào
                 nest: true,     // Cho các thuộc tính của obj hiển thị đúng định dạng thay vì phải sử dụng dấu . (foo.bar = ...)
+                plain: true     // Chỉ trả về data, không trả về metadata kèm theo
             })
 
-            // foundSach trả về 1 mảng các obj
+            // foundSach trả về 1 mảng các obj gồm [data, metadata]
+            // Ta chỉ cần lấy obj đầu tiên là data, và plain: true giúp ta làm điều đó
+            // Mỗi record trong table mà data trả về sẽ có key là 1 số như: "0", "1",...
+            // Ta lấy chúng bằng cách sử dụng data['1'],...
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
                 data: foundSach,
-                length: foundSach.length
+                length: Object.keys(foundSach).length
             })
 
         } catch (error: any) {
@@ -142,6 +163,7 @@ class SachController {
                 replacements: {idSach: parseInt(id)},
                 type: QueryTypes.SELECT,
                 raw: true,
+                nest: true,
                 plain: true
             })
 
@@ -244,7 +266,7 @@ class SachController {
                 type: QueryTypes.SELECT,
                 raw: true,
                 nest: true,
-                plain: true     // Vì dữ liệu của function trả về là array. Gtri trả về của hàm này là 1 phần tử nên ta lấy thẳng phần tử đầu tiên
+                plain: true     // Vì dữ liệu của function trả về là array [data, metadata]. Gtri trả về lấy thẳng phần tử data
             })
             if (isNaN(parseInt(addedSachID)) === true) {
                 await sequelizeConnection.query('CALL XOA_SACH(:idSach)', {

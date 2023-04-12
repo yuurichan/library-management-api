@@ -75,12 +75,13 @@ class TacGiaController {
                 return res.status(400).json({ msg: "Invalid ID format." });
             
             // Ko rõ có cần xét đk này ko
-            //const foundTacGia: any = await TacGia.findOne({where: {tenTacGia: tenTacGia}, raw: true});
             // const foundTacGia: any = await sequelizeConnection.query('SELECT * FROM tacgia WHERE lower')
-            // if (foundTacGia)
-            //     return res.status(400).json({
-            //         msg: "Tác giả đã có sẵn."
-            //     })
+            const foundTacGia: any = await TacGia.findOne({where: {tenTacGia: tenTacGia}, raw: true});
+            if (foundTacGia)
+                return res.status(400).json({
+                    msg: "Tác giả đã có sẵn."
+                })
+            // Đã có unique sẵn trong CSDL
 
             const selectedTacGia: any = await TacGia.findByPk(parseInt(id), {raw: true});
             if (selectedTacGia === null || !isValidName(tenTacGia) || tenTacGia.trim() === '' || (!isValidDate(ngaySinh) && ngaySinh !== ''))
@@ -130,7 +131,14 @@ class TacGiaController {
             if(isNaN(parseInt(id)) === true)
                 return res.status(400).json({ msg: "Invalid ID format." });
 
-            const tg: any = await TacGia.findOne({where: {idTacGia: parseInt(id)}, raw: true, nest: true});
+            //const tg: any = await TacGia.findOne({where: {idTacGia: parseInt(id)}, raw: true, nest: true});
+            const tg: any = await sequelizeConnection.query('CALL THONGTIN_TACGIA(:idTacGia)', {
+                replacements: {idTacGia: parseInt(id)},
+                type: QueryTypes.SELECT,
+                raw: true,
+                nest: true,
+                plain: true
+            })
             if (!tg)
                 return res.status(400).json({
                     msg: "Tác giả không tồn tại"
@@ -159,6 +167,7 @@ class TacGiaController {
                 type: QueryTypes.SELECT,
                 raw: true,
                 nest: true,
+                plain: true
                 // model: TacGia,
                 // mapToModel: true    
             });

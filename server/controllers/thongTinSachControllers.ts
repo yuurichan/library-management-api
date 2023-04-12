@@ -49,7 +49,7 @@ class ThongTinSachController {
             
             // Ktra idSach có tồn tại trong CSDL hay ko
             const foundTTS: any = await ThongTinSach.findOne({where: {idSach: parseInt(idSach)}, raw: true})
-            if (foundTTS === null)
+            if (!foundTTS)
                 return res.status(400).json({ msg: "Thông tin sách không tồn tại." });
             
             await ThongTinSach.destroy({where: {idSach: parseInt(idSach)}})
@@ -89,7 +89,7 @@ class ThongTinSachController {
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
                 data: ttS,
-                dataLength: ttS.length
+                dataLength: Object.keys(ttS).length
             })
             
         } catch (error: any) {

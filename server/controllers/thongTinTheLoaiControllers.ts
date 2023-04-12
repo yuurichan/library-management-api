@@ -17,7 +17,7 @@ class ThongTinTheLoaiController {
             // để sử dụng trong hàm này
             const foundSach = await Sach.findByPk(parseInt(idSach), {raw: true});
             //const foundTacGia = await TacGia.findByPk(parseInt(idTacGia), {raw: true});
-            if (foundSach === null)
+            if (!foundSach)
                 return res.status(400).json({ msg: "Sách không tồn tại." });
             
             // const ttTL: any = await sequelizeConnection.query('CALL THEM_THONGTINTHELOAI(:idSach, :theLoai)', {
@@ -49,7 +49,8 @@ class ThongTinTheLoaiController {
             
             // Ktra idSach có tồn tại trong CSDL hay ko
             const foundTTS: any = await ThongTinTheLoai.findOne({where: {idSach: parseInt(idSach)}, raw: true})
-            if (foundTTS === null)
+            //if (foundTTS === null)
+            if (!foundTTS)
                 return res.status(400).json({ msg: "Thông tin sách không tồn tại." });
             
             await ThongTinTheLoai.destroy({where: {idSach: parseInt(idSach)}})
@@ -81,7 +82,7 @@ class ThongTinTheLoaiController {
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
                 data: ttTL,
-                dataLength: ttTL.length
+                dataLength: Object.keys(ttTL).length
             })
             
         } catch (error: any) {

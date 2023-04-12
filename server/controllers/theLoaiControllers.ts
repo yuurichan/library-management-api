@@ -73,7 +73,7 @@ class TheLoaiController {
                 return res.status(400).json({ msg: "Invalid ID format." });
 
             const deletedTheLoai: any = await TheLoai.findByPk(parseInt(id), {raw: true});
-            if(deletedTheLoai === null)
+            if(!deletedTheLoai)
                 return res.status(400).json({ msg: "Invalid ID." })
 
             await sequelizeConnection.query('CALL XOA_THELOAI(:idTheLoai)', {

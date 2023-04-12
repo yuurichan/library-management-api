@@ -48,8 +48,10 @@ class PhieuMuonController {
             
             const foundND: any = await NguoiDung.findByPk(idNguoiDoc, {raw: true});
             const foundTT: any = await NguoiDung.findByPk(idThuThu, {raw: true});
-            if (foundND === null || foundTT === null)
-                return res.status(400).json({ msg: "Người dùng không tồn tại." })
+            if (foundND === null)
+                return res.status(400).json({ msg: "Người đọc không tồn tại." })
+            if (foundTT === null)
+                return res.status(400).json({ msg: "Thủ thư không tồn tại." })
             
             await sequelizeConnection.query('CALL SUA_PHIEUMUONSACH(:idPhieuMuon, :idXuatBan, :idNguoiDoc, :idThuThu, :ngayMuon, :hanTra)', {
                 replacements: {idPhieuMuon: idPhieuMuon ,idXuatBan: idXuatBan, idNguoiDoc: idNguoiDoc, idThuThu: idThuThu, ngayMuon: ngayMuon, hanTra: hanTra}
@@ -57,6 +59,7 @@ class PhieuMuonController {
 
             return res.status(200).json({
                 msg: "Chỉnh sửa phiếu mượn thành công.",
+                idPM: parseInt(idPhieuMuon)
             })
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
@@ -124,7 +127,8 @@ class PhieuMuonController {
             const foundPM: any = await sequelizeConnection.query('CALL TIMKIEM_PHIEUMUON(:idPhieuMuon)', {
                 replacements: {idPhieuMuon: id},
                 raw: true,
-                nest: true
+                nest: true,
+                plain: true
             })
             if (!foundPM)
                 return res.status(400).json({ msg: "Phiếu mượn không tồn tại" });
@@ -132,7 +136,7 @@ class PhieuMuonController {
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
                 data: foundPM,
-                length: foundPM.length
+                length: Object.keys(foundPM).length
             })
             
         } catch (error: any) {
@@ -152,6 +156,7 @@ class PhieuMuonController {
 
             return res.status(200).json({
                 msg: "Chỉnh sửa phiếu mượn thành công.",
+                idPM: parseInt(id)
             })
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });

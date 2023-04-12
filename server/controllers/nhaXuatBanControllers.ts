@@ -34,7 +34,7 @@ class NhaXuatBanController {
                 return res.status(400).json({ msg: "Invalid ID format." });
 
             const foundNXB: any = await NhaXuatBan.findByPk(parseInt(id), {raw: true}); 
-            if (tenNhaXuatBan === '' || tenNhaXuatBan.trim() === '' || (!isValidDate(namThanhLap) && namThanhLap !== '') || foundNXB === null)
+            if (tenNhaXuatBan === '' || tenNhaXuatBan.trim() === '' || (!isValidDate(namThanhLap) && namThanhLap !== '') || foundNXB === null || !foundNXB)
                 return res.status(400).json({ msg: "Invalid data." });
             
             await NhaXuatBan.update({
@@ -62,7 +62,7 @@ class NhaXuatBanController {
                 return res.status(400).json({ msg: "Invalid ID format." });
             
             const foundNXB: any = await NhaXuatBan.findByPk(parseInt(id), {raw: true}); 
-            if(foundNXB === null)
+            if(!foundNXB)
                 return res.status(400).json({ msg: "Nhà xuất bản không tồn tại." })
             
             await sequelizeConnection.query('CALL XOA_NHAXUATBAN(:idNhaXuatBan)', {
@@ -89,7 +89,8 @@ class NhaXuatBanController {
             const infoNXB: any = sequelizeConnection.query('CALL THONGTIN_NHAXUATBAN(:idNhaXuatBan)', {
                 replacements: {idNhaXuatBan: parseInt(id)},
                 raw: true,
-                nest: true
+                nest: true,
+                plain: true
             })
             if (!infoNXB)
                 return res.status(400).json({

@@ -11,11 +11,13 @@ class ListController {
                 type: QueryTypes.SELECT,
                 raw: true,
                 nest: true,
+                plain: true
             })
 
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
-                data: dataList
+                data: dataList,
+                length: Object.keys(dataList).length
             })
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
@@ -28,11 +30,13 @@ class ListController {
                 type: QueryTypes.SELECT,
                 raw: true,
                 nest: true,
+                plain: true
             })
 
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
-                data: dataList
+                data: dataList,
+                length: Object.keys(dataList).length
             })
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
@@ -45,11 +49,13 @@ class ListController {
                 type: QueryTypes.SELECT,
                 raw: true,
                 nest: true,
+                plain: true
             })
 
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
-                data: dataList
+                data: dataList,
+                length: Object.keys(dataList).length
             })
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
@@ -62,11 +68,15 @@ class ListController {
                 type: QueryTypes.SELECT,
                 raw: true,
                 nest: true,
+                plain: true
             })
-
+            console.log(dataList)
+            console.log('tst: ', dataList[0]['idSach'])
+            console.log('tst: ', dataList['0']['idSach'])
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
-                data: dataList
+                data: dataList,
+                length: Object.keys(dataList).length
             })
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
@@ -79,11 +89,13 @@ class ListController {
                 type: QueryTypes.SELECT,
                 raw: true,
                 nest: true,
+                plain: true
             })
 
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
-                data: dataList
+                data: dataList,
+                length: dataList.length
             })
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
@@ -96,11 +108,13 @@ class ListController {
                 type: QueryTypes.SELECT,
                 raw: true,
                 nest: true,
+                plain: true
             })
 
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
-                data: dataList
+                data: dataList,
+                length: Object.keys(dataList).length
             })
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
@@ -117,16 +131,18 @@ class ListController {
                 replacements: {idNguoiDung: user.idNguoiDung},
                 type: QueryTypes.SELECT,
                 raw: true,
-                nest: true
+                nest: true,
+                plain: true
             })
             // Trong MySQL, hàm DANHSACH_PHIEUMUON sẽ dựa vào idNguoiDung để lấy vai trò người dùng,
             // từ đó hiển thị danh sách tương ứng với vai trò.
             // Thủ thư => Hiển thị tất cả Phiếu mượn
             // Người đọc thông thường => Chỉ hiển thị phiếu mượn của người đọc
-
+            console.log(dataList)
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
-                data: dataList
+                data: dataList,
+                length: Object.keys(dataList).length
             })
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
