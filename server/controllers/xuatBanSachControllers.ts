@@ -92,7 +92,8 @@ class XuatBanSachController {
                 replacements: {idXuatBan: parseInt(id)},
                 type: QueryTypes.SELECT,
                 raw: true,
-                nest: true
+                nest: true,
+                plain: true
             })
             if (infoXBSach === null) {
                 return res.status(400).json({ msg: "Bản sao sách không tồn tại." })
