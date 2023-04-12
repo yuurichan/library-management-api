@@ -53,7 +53,7 @@ export const authLibrarian = async (req: RequestUser, res: Response, next: NextF
             return res.status(400).json({ msg: "Invalid Authentication." })
         }      
         // Check role
-        if (req.user.vaiTro !== "librarian" && req.user.vaiTro !== 'admin') return res.status(400).json({ msg: "Your account does not have the suitable role." });
+        if (req.user.vaiTro !== "thu_thu" && req.user.vaiTro !== 'admin') return res.status(400).json({ msg: "Your account does not have the suitable role." });
 
         next();
     } catch (error: any) {
