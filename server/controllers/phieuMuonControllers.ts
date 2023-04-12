@@ -114,6 +114,31 @@ class PhieuMuonController {
         }
     }
 
+    async getPhieuMuon_byID(req: Request, res: Response) {
+        try {
+            const { id } = req.body;
+            if(isNaN(parseInt(id)))
+                return res.status(400).json({ msg: "Invalid ID format." })
+
+            const foundPM: any = await sequelizeConnection.query('CALL TIMKIEM_PHIEUMUON(:idPhieuMuon)', {
+                replacements: {idPhieuMuon: id},
+                raw: true,
+                nest: true
+            })
+            if (!foundPM)
+                return res.status(400).json({ msg: "Phiếu mượn không tồn tại" });
+
+            return res.status(200).json({
+                msg: "Lấy dữ liệu thành công",
+                data: foundPM,
+                length: foundPM.length
+            })
+            
+        } catch (error: any) {
+            return res.status(500).json({ msg: error.message });
+        }
+    }
+
     async markPhieuMuon(req: Request, res: Response) {
         try {
             const { id, ngayTra } = req.body;

@@ -60,7 +60,23 @@ class XuatBanSachController {
 
     async deleteXuatBanSach(req: Request, res: Response) {
         try {
+            const { id } = req.params;
+            if(isNaN(parseInt(id)))
+                return res.status(400).json({ msg: "Invalid ID format." });
             
+            const foundBanSaoSach: any = await XuatBanSach.findByPk(parseInt(id), {raw: true})
+            if (foundBanSaoSach === null)
+                return res.status(400).json({ msg: "Bản sao sách không tồn tại." });
+            
+            await sequelizeConnection.query('CALL XOA_XUATBANSACH(:idXuatBan)', {
+                replacements: {idXuatBan: id},
+            })
+            
+            return res.status(200).json({
+                msg: "Xóa bản sao sách thành công.",
+                deletedData: foundBanSaoSach
+            })
+
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }

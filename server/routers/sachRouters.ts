@@ -11,6 +11,7 @@ router.put('/update_sach', auth, authLibrarian, SachController.updateSach_comple
 router.get('/get_sach/:id', auth, authLibrarian, SachController.layThongTinSach);
 
 // Các API cho người đọc
+// Có thể xét điều kiện dựa vào length của data được trả về (nếu data null thì length = 0)
 router.get('/get_sach_byname', auth, SachController.getSachByName);
 router.get('/get_sach_byyear', auth, SachController.getSachByYear);
 router.get('/get_sach_byauthor', auth, SachController.getSachByAuthor);

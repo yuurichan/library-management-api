@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import sequelizeConnection from "../config/sequelize_conf";
 import { QueryTypes } from "sequelize";
 import { isValidName, isValidPassword } from "../config/dataValidate";
+import { RequestUser } from "../config/interface";
 
 class ListController {
     async getDS_NguoiDung(req: Request, res: Response) {
@@ -96,6 +97,32 @@ class ListController {
                 raw: true,
                 nest: true,
             })
+
+            return res.status(200).json({
+                msg: "Lấy dữ liệu thành công",
+                data: dataList
+            })
+        } catch (error: any) {
+            return res.status(500).json({ msg: error.message });
+        }
+    }
+
+    async getDS_PhieuMuon(req: RequestUser, res: Response) {
+        try {
+            const user: any = req.user
+            if(!user)
+                return res.status(400).json({ msg: "Tài khoản không tồn tại." });
+
+            const dataList: any = await sequelizeConnection.query("CALL DANHSACH_PHIEUMUON(:idNguoiDung)", {
+                replacements: {idNguoiDung: user.idNguoiDung},
+                type: QueryTypes.SELECT,
+                raw: true,
+                nest: true
+            })
+            // Trong MySQL, hàm DANHSACH_PHIEUMUON sẽ dựa vào idNguoiDung để lấy vai trò người dùng,
+            // từ đó hiển thị danh sách tương ứng với vai trò.
+            // Thủ thư => Hiển thị tất cả Phiếu mượn
+            // Người đọc thông thường => Chỉ hiển thị phiếu mượn của người đọc
 
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
