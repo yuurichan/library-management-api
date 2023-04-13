@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import sequelizeConnection from "../config/sequelize_conf";
 import { QueryTypes } from "sequelize";
 import { isValidName, isValidPassword } from "../config/dataValidate";
-import { RequestUser } from "../config/interface";
+import { User, RequestUser } from "../config/interface";
 
 class ListController {
     async getDS_NguoiDung(req: Request, res: Response) {
@@ -123,7 +123,7 @@ class ListController {
 
     async getDS_PhieuMuon(req: RequestUser, res: Response) {
         try {
-            const user: any = req.user
+            const user: User = req.user as User;
             if(!user)
                 return res.status(400).json({ msg: "Tài khoản không tồn tại." });
 
