@@ -23,7 +23,8 @@ class UserController {
 
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
-                data: userAcc
+                data: userAcc,
+                length: Object.keys(userAcc).length
             })
 
         } catch (error: any) {

@@ -111,7 +111,8 @@ class PhieuMuonController {
             
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công.",
-                data: foundPM
+                data: foundPM,
+                length: Object.keys(foundPM).length
             })
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });

@@ -101,7 +101,8 @@ class XuatBanSachController {
 
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
-                data: infoXBSach
+                data: infoXBSach,
+                length: Object.keys(infoXBSach).length
             })
 
         } catch (error: any) {

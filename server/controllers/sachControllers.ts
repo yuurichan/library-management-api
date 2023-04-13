@@ -175,7 +175,8 @@ class SachController {
 
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
-                data: infoSach
+                data: infoSach,
+                length: Object.keys(infoSach).length
             })
 
         } catch (error: any) {

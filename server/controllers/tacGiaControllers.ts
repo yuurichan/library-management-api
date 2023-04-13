@@ -147,7 +147,8 @@ class TacGiaController {
 
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
-                data: tg
+                data: tg,
+                length: Object.keys(tg).length
             })
 
         } catch (error: any) {

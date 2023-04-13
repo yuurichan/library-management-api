@@ -108,7 +108,8 @@ class TheLoaiController {
 
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công",
-                data: infoTheLoai
+                data: infoTheLoai,
+                length: Object.keys(infoTheLoai).length
             })
 
         } catch (error: any) {

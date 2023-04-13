@@ -88,6 +88,7 @@ class NhaXuatBanController {
             
             const infoNXB: any = sequelizeConnection.query('CALL THONGTIN_NHAXUATBAN(:idNhaXuatBan)', {
                 replacements: {idNhaXuatBan: parseInt(id)},
+                type: QueryTypes.SELECT,
                 raw: true,
                 nest: true,
                 plain: true
@@ -99,7 +100,8 @@ class NhaXuatBanController {
             
             return res.status(200).json({
                 msg: "Lấy dữ liệu thành công.",
-                data: infoNXB
+                data: infoNXB,
+                length: Object.keys(infoNXB).length
             })
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
