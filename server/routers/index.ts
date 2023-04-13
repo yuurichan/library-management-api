@@ -10,6 +10,7 @@ import phieuMuonRouter from './phieuMuonRouters'
 import sachRouter from './sachRouters'
 import userRouter from './userRouters'
 import listRouter from './listRouters'
+import statRouter from './statisticsRouters'
 import wakeUpRouter from './wakeUpCallRouters'
 
 const routers = {
@@ -24,6 +25,7 @@ const routers = {
     sachRouter,
     userRouter,
     listRouter,
+    statRouter,
     wakeUpRouter
 };
 export default routers;

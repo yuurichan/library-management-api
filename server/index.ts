@@ -60,7 +60,8 @@ app.use("/api", routers.ttTLRouter);
 app.use("/api", routers.phieuMuonRouter);
 app.use("/api", routers.sachRouter);
 app.use("/api", routers.userRouter);
-app.use("/api", routers.listRouter);
+app.use("/api/list", routers.listRouter);
+app.use("/api/stats", routers.statRouter);
 app.use("/api", routers.wakeUpRouter);
 
 // Few minor changes for some requests

@@ -23,7 +23,7 @@ export const auth = async (req: RequestUser, res: Response, next: NextFunction) 
         //         msg: error.message
         //     });
         // });
-        if (!user) return res.status(400).json({ msg: "This account does not exist." })
+        if (!user) return res.status(400).json({ msg: "Tài khoản không tồn tại." })
 
         req.user = user;
 
