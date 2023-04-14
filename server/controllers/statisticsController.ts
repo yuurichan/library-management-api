@@ -16,11 +16,24 @@ class StatisticsController {
             })
             
             console.log(statList)
+            let statListArr: any[] = [];
+            if (statList) {
+                for (const key_idx in statList) {
+                    statListArr.push(statList[`${key_idx}`])
+                }
+            }
+
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: statList,
+            //     length: Object.keys(statList).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: statList,
-                length: Object.keys(statList).length
+                msg: statListArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: statListArr,
+                length: statListArr.length
             })
+
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }
@@ -36,12 +49,25 @@ class StatisticsController {
                 plain: true
             })
             
-            console.log(statList)
+            //console.log(statList)
+            let statListArr: any[] = [];
+            if (statList) {
+                for (const key_idx in statList) {
+                    statListArr.push(statList[`${key_idx}`])
+                }
+            }
+
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: statList,
+            //     length: Object.keys(statList).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: statList,
-                length: Object.keys(statList).length
+                msg: statListArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: statListArr,
+                length: statListArr.length
             })
+
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }
@@ -57,12 +83,25 @@ class StatisticsController {
                 plain: true
             })
             
-            console.log(statList)
+            //console.log(statList)
+            let statListArr: any[] = [];
+            if (statList) {
+                for (const key_idx in statList) {
+                    statListArr.push(statList[`${key_idx}`])
+                }
+            }
+
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: statList,
+            //     length: Object.keys(statList).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: statList,
-                length: Object.keys(statList).length
+                msg: statListArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: statListArr,
+                length: statListArr.length
             })
+
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }
@@ -78,12 +117,25 @@ class StatisticsController {
                 plain: true
             })
             
-            console.log(statList)
+            //console.log(statList)
+            let statListArr: any[] = [];
+            if (statList) {
+                for (const key_idx in statList) {
+                    statListArr.push(statList[`${key_idx}`])
+                }
+            }
+
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: statList,
+            //     length: Object.keys(statList).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: statList,
-                length: Object.keys(statList).length
+                msg: statListArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: statListArr,
+                length: statListArr.length
             })
+
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }
@@ -107,12 +159,31 @@ class StatisticsController {
             // từ đó hiển thị danh sách tương ứng với vai trò.
             // Thủ thư => Hiển thị tất cả số các phiếu mượn chưa trả của các người dùng
             // Người đọc thông thường => Chỉ hiển thị số phiếu mượn chưa trả của người đọc
-            console.log(statList)
+            // console.log(statList)
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: statList,
+            //     length: Object.keys(statList).length
+            // })
+
+            let statListArr: any[] = [];
+            if (statList) {
+                for (const key_idx in statList) {
+                    statListArr.push(statList[`${key_idx}`])
+                }
+            }
+
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: statList,
+            //     length: Object.keys(statList).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: statList,
-                length: Object.keys(statList).length
+                msg: statListArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: statListArr,
+                length: statListArr.length
             })
+
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }
@@ -138,11 +209,29 @@ class StatisticsController {
             // từ đó hiển thị danh sách tương ứng với vai trò.
             // Thủ thư => Hiển thị tất cả Phiếu mượn
             // Người đọc thông thường => Chỉ hiển thị phiếu mượn của người đọc
-            console.log(statList)
+            // console.log(statList)
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: statList,
+            //     length: Object.keys(statList).length
+            // })
+            
+            let statListArr: any[] = [];
+            if (statList) {
+                for (const key_idx in statList) {
+                    statListArr.push(statList[`${key_idx}`])
+                }
+            }
+
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: statList,
+            //     length: Object.keys(statList).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: statList,
-                length: Object.keys(statList).length
+                msg: statListArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: statListArr,
+                length: statListArr.length
             })
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });

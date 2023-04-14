@@ -156,6 +156,7 @@ class TacGiaController {
         }
     }
 
+    /// Hàm sử dụng SELECT nên output sẽ không có keys số
     async getTacGiaByName(req: Request, res: Response) {
         try {
             const { tenTacGia } = req.body;

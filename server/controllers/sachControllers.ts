@@ -22,14 +22,27 @@ class SachController {
                 plain: true     // Chỉ trả về data, không trả về metadata kèm theo
             })
 
+            let foundSachArr: any[] = [];
+            if (foundSach) {
+                for (const key_idx in foundSach) {
+                    foundSachArr.push(foundSach[`${key_idx}`])
+                }
+            }
+                
+
             // foundSach trả về 1 mảng các obj gồm [data, metadata]
             // Ta chỉ cần lấy obj đầu tiên là data, và plain: true giúp ta làm điều đó
             // Mỗi record trong table mà data trả về sẽ có key là 1 số như: "0", "1",...
             // Ta lấy chúng bằng cách sử dụng data['1'],...
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: foundSach,
+            //     length: Object.keys(foundSach).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: foundSach,
-                length: Object.keys(foundSach).length
+                msg: foundSachArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: foundSachArr,
+                length: foundSachArr.length
             })
 
         } catch (error: any) {
@@ -52,14 +65,27 @@ class SachController {
                 plain: true     // Chỉ trả về data, không trả về metadata kèm theo
             })
 
+            let foundSachArr: any[] = [];
+            if (foundSach) {
+                for (const key_idx in foundSach) {
+                    foundSachArr.push(foundSach[`${key_idx}`])
+                }
+            }
+                
+
             // foundSach trả về 1 mảng các obj gồm [data, metadata]
             // Ta chỉ cần lấy obj đầu tiên là data, và plain: true giúp ta làm điều đó
             // Mỗi record trong table mà data trả về sẽ có key là 1 số như: "0", "1",...
             // Ta lấy chúng bằng cách sử dụng data['1'],...
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: foundSach,
+            //     length: Object.keys(foundSach).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: foundSach,
-                length: Object.keys(foundSach).length
+                msg: foundSachArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: foundSachArr,
+                length: foundSachArr.length
             })
 
         } catch (error: any) {
@@ -80,14 +106,27 @@ class SachController {
                 plain: true     // Chỉ trả về data, không trả về metadata kèm theo
             })
 
+            let foundSachArr: any[] = [];
+            if (foundSach) {
+                for (const key_idx in foundSach) {
+                    foundSachArr.push(foundSach[`${key_idx}`])
+                }
+            }
+                
+
             // foundSach trả về 1 mảng các obj gồm [data, metadata]
             // Ta chỉ cần lấy obj đầu tiên là data, và plain: true giúp ta làm điều đó
             // Mỗi record trong table mà data trả về sẽ có key là 1 số như: "0", "1",...
             // Ta lấy chúng bằng cách sử dụng data['1'],...
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: foundSach,
+            //     length: Object.keys(foundSach).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: foundSach,
-                length: Object.keys(foundSach).length
+                msg: foundSachArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: foundSachArr,
+                length: foundSachArr.length
             })
 
         } catch (error: any) {
@@ -108,14 +147,27 @@ class SachController {
                 plain: true     // Chỉ trả về data, không trả về metadata kèm theo
             })
 
+            let foundSachArr: any[] = [];
+            if (foundSach) {
+                for (const key_idx in foundSach) {
+                    foundSachArr.push(foundSach[`${key_idx}`])
+                }
+            }
+                
+
             // foundSach trả về 1 mảng các obj gồm [data, metadata]
             // Ta chỉ cần lấy obj đầu tiên là data, và plain: true giúp ta làm điều đó
             // Mỗi record trong table mà data trả về sẽ có key là 1 số như: "0", "1",...
             // Ta lấy chúng bằng cách sử dụng data['1'],...
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: foundSach,
+            //     length: Object.keys(foundSach).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: foundSach,
-                length: Object.keys(foundSach).length
+                msg: foundSachArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: foundSachArr,
+                length: foundSachArr.length
             })
 
         } catch (error: any) {
@@ -136,14 +188,27 @@ class SachController {
                 plain: true     // Chỉ trả về data, không trả về metadata kèm theo
             })
 
+            let foundSachArr: any[] = [];
+            if (foundSach) {
+                for (const key_idx in foundSach) {
+                    foundSachArr.push(foundSach[`${key_idx}`])
+                }
+            }
+                
+
             // foundSach trả về 1 mảng các obj gồm [data, metadata]
             // Ta chỉ cần lấy obj đầu tiên là data, và plain: true giúp ta làm điều đó
             // Mỗi record trong table mà data trả về sẽ có key là 1 số như: "0", "1",...
             // Ta lấy chúng bằng cách sử dụng data['1'],...
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: foundSach,
+            //     length: Object.keys(foundSach).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: foundSach,
-                length: Object.keys(foundSach).length
+                msg: foundSachArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: foundSachArr,
+                length: foundSachArr.length
             })
 
         } catch (error: any) {

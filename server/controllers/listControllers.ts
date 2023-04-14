@@ -14,11 +14,24 @@ class ListController {
                 plain: true
             })
 
+            let dataListArr: any[] = [];
+            if (dataList) {
+                for (const key_idx in dataList) {
+                    dataListArr.push(dataList[`${key_idx}`]);
+                }
+            }
+
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: dataList,
+            //     length: Object.keys(dataList).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: dataList,
-                length: Object.keys(dataList).length
+                msg: dataListArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: dataListArr,
+                length: dataListArr.length
             })
+
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }
@@ -33,11 +46,24 @@ class ListController {
                 plain: true
             })
 
+            let dataListArr: any[] = [];
+            if (dataList) {
+                for (const key_idx in dataList) {
+                    dataListArr.push(dataList[`${key_idx}`]);
+                }
+            }
+
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: dataList,
+            //     length: Object.keys(dataList).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: dataList,
-                length: Object.keys(dataList).length
+                msg: dataListArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: dataListArr,
+                length: dataListArr.length
             })
+
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }
@@ -52,11 +78,24 @@ class ListController {
                 plain: true
             })
 
+            let dataListArr: any[] = [];
+            if (dataList) {
+                for (const key_idx in dataList) {
+                    dataListArr.push(dataList[`${key_idx}`]);
+                }
+            }
+
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: dataList,
+            //     length: Object.keys(dataList).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: dataList,
-                length: Object.keys(dataList).length
+                msg: dataListArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: dataListArr,
+                length: dataListArr.length
             })
+
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }
@@ -73,11 +112,24 @@ class ListController {
             console.log(dataList)
             console.log('tst: ', dataList[0]['idSach'])
             console.log('tst: ', dataList['0']['idSach'])
+            let dataListArr: any[] = [];
+            if (dataList) {
+                for (const key_idx in dataList) {
+                    dataListArr.push(dataList[`${key_idx}`]);
+                }
+            }
+
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: dataList,
+            //     length: Object.keys(dataList).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: dataList,
-                length: Object.keys(dataList).length
+                msg: dataListArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: dataListArr,
+                length: dataListArr.length
             })
+
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }
@@ -92,11 +144,24 @@ class ListController {
                 plain: true
             })
 
+            let dataListArr: any[] = [];
+            if (dataList) {
+                for (const key_idx in dataList) {
+                    dataListArr.push(dataList[`${key_idx}`]);
+                }
+            }
+
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: dataList,
+            //     length: Object.keys(dataList).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: dataList,
-                length: dataList.length
+                msg: dataListArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: dataListArr,
+                length: dataListArr.length
             })
+
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }
@@ -111,11 +176,24 @@ class ListController {
                 plain: true
             })
 
+            let dataListArr: any[] = [];
+            if (dataList) {
+                for (const key_idx in dataList) {
+                    dataListArr.push(dataList[`${key_idx}`]);
+                }
+            }
+
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: dataList,
+            //     length: Object.keys(dataList).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: dataList,
-                length: Object.keys(dataList).length
+                msg: dataListArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: dataListArr,
+                length: dataListArr.length
             })
+
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }
@@ -139,11 +217,24 @@ class ListController {
             // Thủ thư => Hiển thị tất cả Phiếu mượn
             // Người đọc thông thường => Chỉ hiển thị phiếu mượn của người đọc
             console.log(dataList)
+            let dataListArr: any[] = [];
+            if (dataList) {
+                for (const key_idx in dataList) {
+                    dataListArr.push(dataList[`${key_idx}`]);
+                }
+            }
+
+            // return res.status(200).json({
+            //     msg: "Lấy dữ liệu thành công",
+            //     data: dataList,
+            //     length: Object.keys(dataList).length
+            // })
             return res.status(200).json({
-                msg: "Lấy dữ liệu thành công",
-                data: dataList,
-                length: Object.keys(dataList).length
+                msg: dataListArr.length !== 0 ? "Lấy dữ liệu thành công" : "Lấy dữ liệu thành công. Dữ liệu rỗng.",
+                data: dataListArr,
+                length: dataListArr.length
             })
+            
         } catch (error: any) {
             return res.status(500).json({ msg: error.message });
         }
