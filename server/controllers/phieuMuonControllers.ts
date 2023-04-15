@@ -121,12 +121,15 @@ class PhieuMuonController {
 
     async getPhieuMuon_byID(req: Request, res: Response) {
         try {
-            const { id } = req.body;
+            //const { id } = req.body;
+            const id = req.query.keyword as string;
+            const s_id = decodeURIComponent(id);
+
             if(isNaN(parseInt(id)))
                 return res.status(400).json({ msg: "Invalid ID format." })
 
             const foundPM: any = await sequelizeConnection.query('CALL TIMKIEM_PHIEUMUON(:idPhieuMuon)', {
-                replacements: {idPhieuMuon: id},
+                replacements: {idPhieuMuon: parseInt(s_id)},
                 raw: true,
                 nest: true,
                 plain: true

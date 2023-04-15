@@ -11,11 +11,20 @@ class SachController {
     // Giới hạn lượng ký tự search ở f-e (20 ký tự)
     async getSachByName(req: Request, res: Response) {
         try {
-            const { tenSach } = req.body;
+            //const { tenSach } = req.query.keyword as any;
+            // Vì ta cần nhận string thay vì nhận 1 obj chứa key tenSach nên ta để
+            // thẳng biến tenSach
+            // Ta nhận query là keyword, bên front-end sẽ phải gửi đến query keyword tương ứng
+            // req.query.keyword !== req.params; query.keyword sẽ tạo tự động ?keyword=...
+            // req.params yêu cầu có sẵn gtri ở URL (:id)
+            const tenSach = req.query.keyword as string;
+            console.log('encode: ', tenSach);
+            const s_tenSach = decodeURIComponent(tenSach)
+            console.log('decode: ', s_tenSach);
 
             const foundSach: any = await sequelizeConnection.query('CALL TIMKIEMSACH_TENSACH(:tenSach)',
             {
-                replacements: {tenSach: tenSach},
+                replacements: {tenSach: s_tenSach},
                 type: QueryTypes.SELECT,    // Kiểu query là SELECT, để định dạng obj trả về của sqlCon.query
                 raw: true,      // Dữ liệu trả về ko cần phải đc format theo model cụ thể nào
                 nest: true,     // Cho các thuộc tính của obj hiển thị đúng định dạng thay vì phải sử dụng dấu . (foo.bar = ...)
@@ -52,13 +61,15 @@ class SachController {
 
     async getSachByYear(req: Request, res: Response) {
         try {
-            const { namXuatBan } = req.body;
-            if (isNaN(parseInt(namXuatBan)) === true)
+            //const { namXuatBan } = req.body;
+            const namXuatBan = req.query.keyword as string;
+            const s_namXuatBan = decodeURIComponent(namXuatBan);
+            if (isNaN(parseInt(s_namXuatBan)) === true)
                 return res.status(400).json({ msg: "Invalid year." });
 
             const foundSach: any = await sequelizeConnection.query('CALL TIMKIEMSACH_NAMXUATBAN(:namXuatBan)',
             {
-                replacements: {namXuatBan: parseInt(namXuatBan)},
+                replacements: {namXuatBan: parseInt(s_namXuatBan)},
                 type: QueryTypes.SELECT,    // Kiểu query là SELECT, để định dạng obj trả về của sqlCon.query
                 raw: true,      // Dữ liệu trả về ko cần phải đc format theo model cụ thể nào
                 nest: true,     // Cho các thuộc tính của obj hiển thị đúng định dạng thay vì phải sử dụng dấu . (foo.bar = ...)
@@ -95,11 +106,13 @@ class SachController {
 
     async getSachByAuthor(req: Request, res: Response) {
         try {
-            const { tenTacGia } = req.body;
+            //const { tenTacGia } = req.body as any;
+            const tenTacGia = req.query.keyword as string;
+            const s_tenTacGia = decodeURIComponent(tenTacGia);
 
             const foundSach: any = await sequelizeConnection.query('CALL TIMKIEMSACH_TENTACGIA(:tenTacGia)',
             {
-                replacements: {tenTacGia: tenTacGia},
+                replacements: {tenTacGia: s_tenTacGia},
                 type: QueryTypes.SELECT,    // Kiểu query là SELECT, để định dạng obj trả về của sqlCon.query
                 raw: true,      // Dữ liệu trả về ko cần phải đc format theo model cụ thể nào
                 nest: true,     // Cho các thuộc tính của obj hiển thị đúng định dạng thay vì phải sử dụng dấu . (foo.bar = ...)
@@ -136,11 +149,13 @@ class SachController {
 
     async getSachByGenre(req: Request, res: Response) {
         try {
-            const { tenTheLoai } = req.body;
+            //const { tenTheLoai } = req.body;
+            const tenTheLoai = req.query.keyword as string;
+            const s_tenTheLoai = decodeURIComponent(tenTheLoai);
 
             const foundSach: any = await sequelizeConnection.query('CALL TIMKIEMSACH_TENTHELOAI(:tenTheLoai)',
             {
-                replacements: {tenTheLoai: tenTheLoai},
+                replacements: {tenTheLoai: s_tenTheLoai},
                 type: QueryTypes.SELECT,    // Kiểu query là SELECT, để định dạng obj trả về của sqlCon.query
                 raw: true,      // Dữ liệu trả về ko cần phải đc format theo model cụ thể nào
                 nest: true,     // Cho các thuộc tính của obj hiển thị đúng định dạng thay vì phải sử dụng dấu . (foo.bar = ...)
@@ -177,11 +192,13 @@ class SachController {
 
     async getSachByNXB(req: Request, res: Response) {
         try {
-            const { tenNXB } = req.body;
+            //const { tenNXB } = req.body;
+            const tenNXB = req.query.keyword as string;
+            const s_tenNXB = decodeURIComponent(tenNXB);
 
             const foundSach: any = await sequelizeConnection.query('CALL TIMKIEMSACH_TENNHAXUATBAN(:tenNXB)',
             {
-                replacements: {tenNXB: tenNXB},
+                replacements: {tenNXB: s_tenNXB},
                 type: QueryTypes.SELECT,    // Kiểu query là SELECT, để định dạng obj trả về của sqlCon.query
                 raw: true,      // Dữ liệu trả về ko cần phải đc format theo model cụ thể nào
                 nest: true,     // Cho các thuộc tính của obj hiển thị đúng định dạng thay vì phải sử dụng dấu . (foo.bar = ...)

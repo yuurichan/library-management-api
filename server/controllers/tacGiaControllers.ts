@@ -159,11 +159,13 @@ class TacGiaController {
     /// Hàm sử dụng SELECT nên output sẽ không có keys số
     async getTacGiaByName(req: Request, res: Response) {
         try {
-            const { tenTacGia } = req.body;
+            //const { tenTacGia } = req.body;
+            const tenTacGia = req.query.keyword as string;
+            const s_tenTacGia = decodeURIComponent(tenTacGia);
             //const [tg, metadata] = await sequelizeConnection.query(`
             const tg: any = await sequelizeConnection.query(`
                 SELECT * FROM tacgia
-                WHERE tenTacGia LIKE '%lower(${tenTacGia})%';
+                WHERE tenTacGia LIKE '%lower(${s_tenTacGia})%';
             `, 
             {
                 type: QueryTypes.SELECT,
