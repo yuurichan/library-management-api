@@ -337,7 +337,7 @@ class SachController {
     async addSach_complete(req: Request, res: Response) {
         try {
             const { tenSach, namSangTac, tacGiaInputs, theLoaiInputs } = req.body
-            if (tenSach.trim() === '' || tenSach === '' || (namSangTac !== '' && !isValidDate(namSangTac)))
+            if (tenSach.trim() === '' || tenSach === '' || (namSangTac !== '' && isNaN(parseInt(namSangTac))))
                 return res.status(400).json({ msg: "Invalid data." });
             if (!isValidNameInputs(tacGiaInputs) || !isValidNameInputs(theLoaiInputs))
                 return res.status(400).json({
@@ -456,7 +456,7 @@ class SachController {
         try {
             //const { id } = req.params;
             const { id, tenSach, namSangTac, tacGiaInputs, theLoaiInputs } = req.body
-            if (tenSach.trim() === '' || tenSach === '' || (namSangTac !== '' && !isValidDate(namSangTac)))
+            if (tenSach.trim() === '' || tenSach === '' || (namSangTac !== '' && isNaN(parseInt(namSangTac))))
                 return res.status(400).json({ msg: "Invalid data." });
             if (!isValidNameInputs(tacGiaInputs) || !isValidNameInputs(theLoaiInputs))
                 return res.status(400).json({
