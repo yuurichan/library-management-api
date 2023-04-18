@@ -2,7 +2,8 @@ export const isValidDate = (dateString: any | string) => {
     const regex =  /^\d{4}-\d{2}-\d{2}$/;
     
     // Invalid format
-    if(!String(dateString).match(regex)) 
+    //if(!String(dateString)?.match(regex)) 
+    if(!dateString?.match(regex)) 
         return false;
 
     // Invalid date check
@@ -18,7 +19,7 @@ export const isValidName = (nameString: string) => {
     const regex = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$/
 
     // Ko cần xét length vì THợp ' ' trim sẽ còn empty string
-    if (nameString.trim().match(regex))
+    if (nameString?.trim().match(regex))
         return true;
     
     return false;
@@ -27,7 +28,7 @@ export const isValidName = (nameString: string) => {
 export const isValidNameInputs = (inputString: string) => {
     var valid = true;
     
-    inputString.split(",").forEach((data, idx) => {
+    inputString?.split(",").forEach((data, idx) => {
         console.log(idx,' - Data: ',data);
         if (data.trim() === '' || !isValidName(data.trim())) valid = false;
     })
@@ -37,7 +38,7 @@ export const isValidNameInputs = (inputString: string) => {
 export const isValidPassword = (inputPwd: string) => {
     const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,20}$/
 
-    if (!inputPwd.match(regex))
+    if (!inputPwd?.match(regex))
         return false;
     else
         return true;

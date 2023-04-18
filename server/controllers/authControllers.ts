@@ -16,7 +16,7 @@ class AuthController {
     async register(req: Request, res: Response) {
         try {
             const { hoTen, idNguoiDung, matKhau, ngaySinh, soDienThoai }: UserRegister = req.body;
-            if (hoTen.trim() === '' || idNguoiDung.trim() === '' || !isValidPassword(matKhau) || (!isValidDate(ngaySinh) && ngaySinh.trim() !== '') || (isNaN(parseInt(soDienThoai)) && soDienThoai.trim() !== ''))
+            if (hoTen.trim() === '' || typeof hoTen === "undefined" || idNguoiDung.trim() === '' || !isValidPassword(matKhau) || (!isValidDate(ngaySinh) && ngaySinh.trim() !== '') || (isNaN(parseInt(soDienThoai)) && soDienThoai.trim() !== ''))
                 return res.status(400).json({ msg: "hoTen, ID or pwd might not be valid." });
 
             const user: any = await NguoiDung.findOne({ where: {idNguoiDung: idNguoiDung}, raw: true, nest: true });

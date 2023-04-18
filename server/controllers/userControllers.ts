@@ -61,7 +61,7 @@ class UserController {
     async updateUser(req: Request, res: Response) {
         try {
             const { idNguoiDung, hoTen, ngaySinh, soDienThoai } = req.body;
-            if (idNguoiDung.trim() === '' || !isValidName(hoTen))
+            if (idNguoiDung.trim() === '' || typeof idNguoiDung === 'undefined' || !isValidName(hoTen))
                 return res.status(400).json({ msg: "Invalid data." })
             
             const user: any = await NguoiDung.findOne({ where: {idNguoiDung: idNguoiDung, trangThai: true}, raw: true, nest: true });
@@ -86,7 +86,7 @@ class UserController {
     async changePwd(req: Request, res: Response) {
         try {
             const { idNguoiDung, newPwd } = req.body;
-            if (idNguoiDung.trim() === '' || !isValidPassword(newPwd))
+            if (idNguoiDung.trim() === '' || typeof idNguoiDung === 'undefined' || !isValidPassword(newPwd))
                 return res.status(400).json({ msg: "Invalid data." })
 
             const user: any = await NguoiDung.findOne({ where: {idNguoiDung: idNguoiDung, trangThai: true}, raw: true, nest: true });

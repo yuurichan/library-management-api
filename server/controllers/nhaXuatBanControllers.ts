@@ -8,7 +8,7 @@ class NhaXuatBanController {
     async addNhaXuatBan(req: Request, res: Response) {
         try {
             const { tenNXB, namThanhLap } = req.body;
-            if (tenNXB === '' || tenNXB.trim() === '' || (!isValidDate(namThanhLap) && namThanhLap !== ''))
+            if (tenNXB === '' || typeof tenNXB === 'undefined' || tenNXB.trim() === '' || (!isValidDate(namThanhLap) && namThanhLap !== ''))
                 return res.status(400).json({ msg: "Invalid data." });
             
             const addedNXB = await NhaXuatBan.create({
@@ -34,7 +34,7 @@ class NhaXuatBanController {
                 return res.status(400).json({ msg: "Invalid ID format." });
 
             const foundNXB: any = await NhaXuatBan.findByPk(parseInt(id), {raw: true}); 
-            if (tenNhaXuatBan === '' || tenNhaXuatBan.trim() === '' || (!isValidDate(namThanhLap) && namThanhLap !== '') || foundNXB === null || !foundNXB)
+            if (tenNhaXuatBan === '' || typeof tenNhaXuatBan === 'undefined' || tenNhaXuatBan.trim() === '' || (!isValidDate(namThanhLap) && namThanhLap !== '') || foundNXB === null || !foundNXB)
                 return res.status(400).json({ msg: "Invalid data." });
             
             await NhaXuatBan.update({

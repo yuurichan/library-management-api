@@ -2,12 +2,13 @@ import { Request, Response } from "express";
 import TheLoai from "../models/theLoai_model";
 import sequelizeConnection from "../config/sequelize_conf";
 import { QueryTypes } from "sequelize";
+import { isValidName } from "../config/dataValidate";
 
 class TheLoaiController {
     async addTheLoai(req: Request, res: Response) {
         try {
             const { tenTheLoai } = req.body;
-            if (tenTheLoai === '' || tenTheLoai.trim() === '')
+            if (tenTheLoai === '' || typeof tenTheLoai === 'undefined' || !isValidName(tenTheLoai) || tenTheLoai.trim() === '')
                 return res.status(400).json({ msg: "Invalid data." });
             
             const foundTL: any = await TheLoai.findOne({where: {tenTheLoai: tenTheLoai}, raw: true});
@@ -41,7 +42,7 @@ class TheLoaiController {
                 return res.status(400).json({ msg: "Invalid ID format." });
 
             const selectedTacGia: any = await TheLoai.findByPk(parseInt(id), {raw: true});
-            if (tenTheLoai === '' || tenTheLoai.trim() === '' || selectedTacGia === null)
+            if (tenTheLoai === '' || typeof tenTheLoai === 'undefined' || !isValidName(tenTheLoai) || tenTheLoai.trim() === '' || selectedTacGia === null)
                 return res.status(400).json({ msg: "Invalid data." });
             
             const foundTL: any = await TheLoai.findOne({where: {tenTheLoai: tenTheLoai}, raw: true});

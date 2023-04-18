@@ -9,7 +9,7 @@ class TacGiaController {
         try {
             const { tenTacGia, ngaySinh, queQuan } = req.body;
 
-            if (tenTacGia === '' || tenTacGia.trim() === '' || (!isValidDate(ngaySinh) && ngaySinh !== ''))
+            if (tenTacGia === '' || typeof tenTacGia === 'undefined' || !isValidName(tenTacGia) || tenTacGia.trim() === '' || (!isValidDate(ngaySinh) && ngaySinh !== ''))
                 return res.status(400).json({ msg: "Invalid data." });
             
             // Ko rõ có cần xét đk này ko
@@ -84,7 +84,7 @@ class TacGiaController {
             // Đã có unique sẵn trong CSDL
 
             const selectedTacGia: any = await TacGia.findByPk(parseInt(id), {raw: true});
-            if (selectedTacGia === null || !isValidName(tenTacGia) || tenTacGia.trim() === '' || (!isValidDate(ngaySinh) && ngaySinh !== ''))
+            if (selectedTacGia === null || !isValidName(tenTacGia) || typeof tenTacGia === 'undefined' || tenTacGia.trim() === '' || (!isValidDate(ngaySinh) && ngaySinh !== ''))
                 return res.status(400).json({ msg: "Invalid data." });
 
             await TacGia.update({

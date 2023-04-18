@@ -337,49 +337,50 @@ class SachController {
     async addSach_complete(req: Request, res: Response) {
         try {
             const { tenSach, namSangTac, tacGiaInputs, theLoaiInputs } = req.body
-            if (tenSach.trim() === '' || tenSach === '' || (namSangTac !== '' && isNaN(parseInt(namSangTac))))
+            if (tenSach.trim() === '' || tenSach === '' || typeof tenSach !== 'string' || (namSangTac !== '' && isNaN(parseInt(namSangTac))))
                 return res.status(400).json({ msg: "Invalid data." });
-            if (!isValidNameInputs(tacGiaInputs) || !isValidNameInputs(theLoaiInputs))
+            if (!isValidNameInputs(tacGiaInputs) || !isValidNameInputs(theLoaiInputs) || typeof tacGiaInputs !== "string" || typeof theLoaiInputs !== "string")
                 return res.status(400).json({
                     msg: "Invalid data."
                 })
             
-            const addedSachID: any = await sequelizeConnection.query('SELECT THEM_SACH(:tenSach, :namSangTac)', {
-                replacements: {tenSach: tenSach, namSangTac: namSangTac},
+            const addedSachID: any = await sequelizeConnection.query('SELECT THEM_SACH(:tenSach, :namSangTac) idSach', {
+                replacements: {tenSach: tenSach, namSangTac: parseInt(namSangTac)},
                 type: QueryTypes.SELECT,
                 raw: true,
                 nest: true,
                 plain: true     // Vì dữ liệu của function trả về là array [data, metadata]. Gtri trả về lấy thẳng phần tử data
             })
-            if (isNaN(parseInt(addedSachID)) === true) {
-                await sequelizeConnection.query('CALL XOA_SACH(:idSach)', {
-                    replacements: {idSach: parseInt(addedSachID)},
-                    type: QueryTypes.DELETE
-                })
-                return res.status(400).json({
-                    msg: "Invalid ID format - Book adding reverted."
-                })
-            }
+            console.log('Added sach ID: ', addedSachID.idSach)
+            // if (isNaN(parseInt(addedSachID)) === true) {
+            //     await sequelizeConnection.query('CALL XOA_SACH(:idSach)', {
+            //         replacements: {idSach: parseInt(addedSachID)},
+            //         type: QueryTypes.DELETE
+            //     })
+            //     return res.status(400).json({
+            //         msg: "Invalid ID format - Book adding reverted."
+            //     })
+            // }
 
             // Thêm các tác giả vào Sach hiện tại
-            await tacGiaInputs.split(",").forEach((data: string, index: any) => {
+            tacGiaInputs.split(",").forEach(async (data: string, index: any) => {
                 if (data.trim() !== '' && isValidName(data.trim()))
-                    sequelizeConnection.query('CALL THEM_THONGTINSACH(:idSach, :tenTacGia)', {
-                        replacements: {idSach: parseInt(addedSachID), tenTacGia: data.trim().replace(/\s+/g, " ")}
+                    await sequelizeConnection.query('CALL THEM_THONGTINSACH(:idSach, :tenTacGia)', {
+                        replacements: {idSach: parseInt(addedSachID.idSach), tenTacGia: data.trim().replace(/\s+/g, " ")}
                     })
             })
             
             // Thêm các thể loại vào Sach hiện tại
-            await theLoaiInputs.split(",").forEach((data: string, index: any) => {
+            theLoaiInputs.split(",").forEach(async (data: string, index: any) => {
                 if (data.trim() !== '' && isValidName(data.trim()))
-                    sequelizeConnection.query('CALL THEM_THONGTINTHELOAI(:idSach, :tenTheLoai)', {
-                        replacements: {idSach: parseInt(addedSachID), tenTheLoai: data.trim().replace(/\s+/g, " ")}
+                    await sequelizeConnection.query('CALL THEM_THONGTINTHELOAI(:idSach, :tenTheLoai)', {
+                        replacements: {idSach: parseInt(addedSachID.idSach), tenTheLoai: data.trim().replace(/\s+/g, " ")}
                     })
             })
 
             return res.status(200).json({
                 msg: "Thêm sách thành công",
-                dataID: addedSachID
+                dataID: addedSachID.idSach
             })
 
         } catch (error: any) {
@@ -456,9 +457,9 @@ class SachController {
         try {
             //const { id } = req.params;
             const { id, tenSach, namSangTac, tacGiaInputs, theLoaiInputs } = req.body
-            if (tenSach.trim() === '' || tenSach === '' || (namSangTac !== '' && isNaN(parseInt(namSangTac))))
+            if (tenSach.trim() === '' || tenSach === '' || typeof tenSach !== 'string' || (namSangTac !== '' && isNaN(parseInt(namSangTac))))
                 return res.status(400).json({ msg: "Invalid data." });
-            if (!isValidNameInputs(tacGiaInputs) || !isValidNameInputs(theLoaiInputs))
+            if (!isValidNameInputs(tacGiaInputs) || !isValidNameInputs(theLoaiInputs) || typeof tacGiaInputs !== "string" || typeof theLoaiInputs !== "string")
                 return res.status(400).json({
                     msg: "Invalid data."
                 })
@@ -468,22 +469,22 @@ class SachController {
                 })
             
             await sequelizeConnection.query('CALL SUA_SACH(:idSach, :tenSach, :namSangTac)', {
-                replacements: {idSach: id, tenSach: tenSach, namSangTac: namSangTac}
+                replacements: {idSach: parseInt(id), tenSach: tenSach, namSangTac: parseInt(namSangTac)}
             })
             // Vì hàm SUA_SACH xóa hết THONGTINSACH và THONGTINTHELOAI chứa idSach nên ta phải thêm lại / cập nhật lại
             // Trong f-e thì có thể để gtri default trong input những gtri trc đó của THONGTINSACH và THONGTINTHELOAI?
             // Thêm các tác giả vào Sach hiện tại
-            await tacGiaInputs.split(",").forEach((data: string, index: any) => {
+            tacGiaInputs.split(",").forEach(async (data: string, index: any) => {
                 if (data.trim() !== '' && isValidName(data.trim()))
-                    sequelizeConnection.query('CALL THEM_THONGTINSACH(:idSach, :tenTacGia)', {
+                    await sequelizeConnection.query('CALL THEM_THONGTINSACH(:idSach, :tenTacGia)', {
                         replacements: {idSach: parseInt(id), tenTacGia: data.trim().replace(/\s+/g, " ")}
                     })
             })
             
             // Thêm các thể loại vào Sach hiện tại
-            await theLoaiInputs.split(",").forEach((data: string, index: any) => {
+            theLoaiInputs.split(",").forEach(async (data: string, index: any) => {
                 if (data.trim() !== '' && isValidName(data.trim()))
-                    sequelizeConnection.query('CALL THEM_THONGTINTHELOAI(:idSach, :tenTheLoai)', {
+                    await sequelizeConnection.query('CALL THEM_THONGTINTHELOAI(:idSach, :tenTheLoai)', {
                         replacements: {idSach: parseInt(id), tenTheLoai: data.trim().replace(/\s+/g, " ")}
                     })
             })

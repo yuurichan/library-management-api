@@ -9,7 +9,7 @@ class XuatBanSachController {
     async addXuatBanSach(req: Request, res: Response) {
         try {
             const { idSach, tenNXB, namXuatBan } = req.body;
-            if (isNaN(parseInt(idSach)) || isNaN(parseInt(namXuatBan)) || tenNXB.trim() === '')
+            if (isNaN(parseInt(idSach)) || isNaN(parseInt(namXuatBan)) || tenNXB.trim() === '' || typeof tenNXB === 'undefined')
                 return res.status(400).json({ msg: "Invalid data." });
             
             const foundSach: any = await Sach.findByPk(parseInt(idSach), {raw: true})
@@ -37,7 +37,7 @@ class XuatBanSachController {
     async updateXuatBanSach(req: Request, res: Response) {
         try {
             const { idXuatBan, idSach, tenNXB, namXuatBan } = req.body;
-            if (isNaN(parseInt(idSach)) || isNaN(parseInt(namXuatBan)) || isNaN(parseInt(idXuatBan)) || tenNXB.trim() === '')
+            if (isNaN(parseInt(idSach)) || isNaN(parseInt(namXuatBan)) || isNaN(parseInt(idXuatBan)) || tenNXB.trim() === '' || typeof tenNXB === 'undefined')
                 return res.status(400).json({ msg: "Invalid data." });
             
             const foundSach: any = await Sach.findByPk(parseInt(idSach), {raw: true})
