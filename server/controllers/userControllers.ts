@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import NguoiDung from "../models/nguoiDung_model";
 import sequelizeConnection from "../config/sequelize_conf";
 import { QueryTypes } from "sequelize";
-import { isValidName, isValidPassword } from "../config/dataValidate";
+import { isValidDate, isValidName, isValidPassword } from "../config/dataValidate";
 
 class UserController {
     // Lay thong tin tai khoan
@@ -61,7 +61,7 @@ class UserController {
     async updateUser(req: Request, res: Response) {
         try {
             const { idNguoiDung, hoTen, ngaySinh, soDienThoai } = req.body;
-            if (idNguoiDung.trim() === '' || typeof idNguoiDung === 'undefined' || !isValidName(hoTen))
+            if (idNguoiDung.trim() === '' || typeof idNguoiDung === 'undefined' || !isValidName(hoTen) || (!isValidDate(ngaySinh) && ngaySinh !== ''))
                 return res.status(400).json({ msg: "Invalid data." })
             
             const user: any = await NguoiDung.findOne({ where: {idNguoiDung: idNguoiDung, trangThai: true}, raw: true, nest: true });
@@ -71,8 +71,9 @@ class UserController {
             if (!user)
                 return res.status(400).json({ msg: "Tài khoản không tồn tại." });
             
-            await sequelizeConnection.query('CALL SUA_NGUOIDUNG(:idNguoiDung, :hoTen, :ngaySinh, :soDienThoai)',
-            {replacements: {idNguoiDung: idNguoiDung, hoTen: hoTen, ngaySinh: ngaySinh ? ngaySinh : null, soDienThoai: soDienThoai ? soDienThoai : null}})
+            await sequelizeConnection.query('CALL SUA_NGUOIDUNG(:idNguoiDung, :matKhau, :hoTen, :ngaySinh, :soDienThoai)',
+            {replacements: {idNguoiDung: idNguoiDung, matKhau: null, hoTen: hoTen, ngaySinh: ngaySinh ? ngaySinh : null, soDienThoai: soDienThoai ? soDienThoai : null}})
+            // Added matKhau: null since trigger CHK_MATKHAU2 allows null pwd inputs to be old pwds
 
             return res.status(200).json({
                 msg: "Chỉnh sửa tài khoản thành công!",
