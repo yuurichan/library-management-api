@@ -78,7 +78,7 @@ class PhieuMuonController {
             if (deletedPM.ngayTra === null)
                 return res.status(400).json({ msg: "Phiếu mượn chưa được trả." });
 
-            await sequelizeConnection.query('CALL XOA_PHIEUMUONSACH(:idPm)', {
+            await sequelizeConnection.query('CALL XOA_PHIEUMUONSACH(:idPM)', {
                 replacements: {idPM: parseInt(id)},
                 type: QueryTypes.DELETE
             })

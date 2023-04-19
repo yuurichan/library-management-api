@@ -402,6 +402,16 @@ class SachController {
 
             
             // await Sach.destroy({where: {idSach: id}});
+            // const delSach: any = await sequelizeConnection.query('CALL XOA_SACH(:idSach)', {
+            //     replacements: {idSach: parseInt(id)},
+            //     type: QueryTypes.DELETE
+            // })
+            // console.log(delSach.ketqua);
+            // if (delSach.ketqua !== null) {
+            //     return res.status(400).json({
+            //         msg: delSach.ketqua
+            //     })
+            // }
             await sequelizeConnection.query('CALL XOA_SACH(:idSach)', {
                 replacements: {idSach: parseInt(id)},
                 type: QueryTypes.DELETE
@@ -413,7 +423,7 @@ class SachController {
             // Nếu vậy sd boolean?
 
             return res.status(200).json({
-                msg: "Xóa thông tin sách thành công",
+                msg: "Xóa sách thành công",
                 data: deletedSach
             })
 

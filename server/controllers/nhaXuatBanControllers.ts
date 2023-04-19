@@ -8,12 +8,12 @@ class NhaXuatBanController {
     async addNhaXuatBan(req: Request, res: Response) {
         try {
             const { tenNXB, namThanhLap } = req.body;
-            if (tenNXB === '' || typeof tenNXB === 'undefined' || tenNXB.trim() === '' || (!isValidDate(namThanhLap) && namThanhLap !== ''))
+            if (tenNXB === '' || typeof tenNXB !== 'string' || tenNXB.trim() === '' || (!isValidDate(namThanhLap) && namThanhLap !== ''))
                 return res.status(400).json({ msg: "Invalid data." });
             
             const addedNXB = await NhaXuatBan.create({
                 tenNhaXuatBan: tenNXB,
-                namThanhLap: namThanhLap
+                namThanhLap: namThanhLap ? namThanhLap : null
             })
 
             return res.status(200).json({
@@ -34,12 +34,14 @@ class NhaXuatBanController {
                 return res.status(400).json({ msg: "Invalid ID format." });
 
             const foundNXB: any = await NhaXuatBan.findByPk(parseInt(id), {raw: true}); 
-            if (tenNhaXuatBan === '' || typeof tenNhaXuatBan === 'undefined' || tenNhaXuatBan.trim() === '' || (!isValidDate(namThanhLap) && namThanhLap !== '') || foundNXB === null || !foundNXB)
+            if (tenNhaXuatBan === '' || typeof tenNhaXuatBan === 'undefined' || tenNhaXuatBan.trim() === '' || (!isValidDate(namThanhLap) && namThanhLap !== ''))
                 return res.status(400).json({ msg: "Invalid data." });
-            
+            if (foundNXB === null || !foundNXB)
+                return res.status(400).json({ msg: "NXB not found." });
+
             await NhaXuatBan.update({
                 tenNhaXuatBan: tenNhaXuatBan,
-                namThanhLap: namThanhLap
+                namThanhLap: namThanhLap ? namThanhLap : null
             },
             {
                 where: {idNhaXuatBan: parseInt(id)}

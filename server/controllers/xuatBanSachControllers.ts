@@ -88,7 +88,7 @@ class XuatBanSachController {
             if(isNaN(parseInt(id)))
                 return res.status(400).json({ msg: "Invalid ID format." });
             
-            const infoXBSach: any = sequelizeConnection.query('CALL THONGTIN_XUATBANSACH(:idXuatBan)', {
+            const infoXBSach: any = await sequelizeConnection.query('CALL THONGTIN_XUATBANSACH(:idXuatBan)', {
                 replacements: {idXuatBan: parseInt(id)},
                 type: QueryTypes.SELECT,
                 raw: true,

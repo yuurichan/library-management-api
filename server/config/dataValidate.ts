@@ -1,3 +1,4 @@
+// Date is in YYYY-MM-DD format, single digits must have 0s filled
 export const isValidDate = (dateString: any | string) => {
     const regex =  /^\d{4}-\d{2}-\d{2}$/;
     
